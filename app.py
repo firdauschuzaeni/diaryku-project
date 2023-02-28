@@ -13,7 +13,7 @@ MONGODB_URI = os.environ.get("MONGODB_URI")
 DB_NAME =  os.environ.get("DB_NAME")
 
 client = MongoClient(MONGODB_URI)
-db = client['DB_NAME'] 
+db = client[DB_NAME] 
 
 app = Flask(__name__)
 
@@ -54,6 +54,8 @@ def save_diary():
         'content': content_receive
     }
     db.diary.insert_one(doc)
+
+    return jsonify({ 'message': "test"})
 
 
 if __name__ == '__main__':
